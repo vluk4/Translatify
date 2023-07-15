@@ -25,44 +25,44 @@ fun TranslatorTheme(
     } else {
         lightColors
     }
-    val sfProText = FontFamily(
+    val montserratText = FontFamily(
         Font(
-            resId = R.font.sf_pro_text_regular,
+            resId = R.font.montserrat,
             weight = FontWeight.Normal
         ),
         Font(
-            resId = R.font.sf_pro_text_medium,
+            resId = R.font.montserrat_medium,
             weight = FontWeight.Medium
         ),
         Font(
-            resId = R.font.sf_pro_text_bold,
+            resId = R.font.montserrat_bold,
             weight = FontWeight.Bold
         )
 
     )
     val typography = Typography(
         h1 = TextStyle(
-            fontFamily = sfProText,
+            fontFamily = montserratText,
             fontWeight = FontWeight.Bold,
             fontSize = 30.sp
         ),
         h2 = TextStyle(
-            fontFamily = sfProText,
+            fontFamily = montserratText,
             fontWeight = FontWeight.Bold,
             fontSize = 24.sp
         ),
         h3 = TextStyle(
-            fontFamily = sfProText,
+            fontFamily = montserratText,
             fontWeight = FontWeight.Medium,
             fontSize = 18.sp
         ),
         body1 = TextStyle(
-            fontFamily = sfProText,
+            fontFamily = montserratText,
             fontWeight = FontWeight.Normal,
             fontSize = 14.sp
         ),
         body2 = TextStyle(
-            fontFamily = sfProText,
+            fontFamily = montserratText,
             fontWeight = FontWeight.Normal,
             fontSize = 12.sp
         )

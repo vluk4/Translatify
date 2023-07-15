@@ -32,14 +32,15 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import com.vluk4.translatify.android.R
-import com.vluk4.translatify.translate.domain.translate.TranslateError
-import com.vluk4.translatify.translate.presentation.TranslateEvent
-import com.vluk4.translatify.translate.presentation.TranslateState
 import com.vluk4.translatify.android.translate.presentation.components.LanguageDropDown
 import com.vluk4.translatify.android.translate.presentation.components.SwapLanguagesButton
 import com.vluk4.translatify.android.translate.presentation.components.TranslateHistoryItem
 import com.vluk4.translatify.android.translate.presentation.components.TranslateTextField
+import com.vluk4.translatify.android.translate.presentation.components.TranslateToolbar
 import com.vluk4.translatify.android.translate.presentation.components.rememberTextToSpeech
+import com.vluk4.translatify.translate.domain.translate.TranslateError
+import com.vluk4.translatify.translate.presentation.TranslateEvent
+import com.vluk4.translatify.translate.presentation.TranslateState
 import java.util.Locale
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalFoundationApi::class)
@@ -65,6 +66,9 @@ fun TranslateScreen(
     }
 
     Scaffold(
+        topBar = {
+            TranslateToolbar()
+        },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {

@@ -19,9 +19,7 @@ fun SwapLanguagesButton(
 ) {
     IconButton(
         onClick = onClick,
-        modifier = modifier
-            .clip(CircleShape)
-            .background(MaterialTheme.colors.primary)
+        modifier = modifier.clip(CircleShape)
     ) {
         Icon(
             imageVector = ImageVector.vectorResource(id = R.drawable.swap_languages),

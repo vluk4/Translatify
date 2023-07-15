@@ -19,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.vluk4.translatify.android.R
 import com.vluk4.translatify.android.core.theme.LightBlue
 import com.vluk4.translatify.core.presentation.UiLanguage
@@ -150,31 +151,56 @@ fun IdleTranslateTextField(
     var isFocused by remember {
         mutableStateOf(false)
     }
-    Box(modifier = modifier) {
-        BasicTextField(
-            value = fromText,
-            onValueChange = onTextChange,
-            cursorBrush = SolidColor(MaterialTheme.colors.primary),
-            modifier = Modifier
-                .fillMaxSize()
-                .onFocusChanged { isFocused = it.isFocused },
-            textStyle = TextStyle(
-                color = MaterialTheme.colors.onSurface
+    var numberOfCharacters by remember {
+        mutableStateOf(0)
+    }
+    val maximumCharacters = 2300
+
+    Column {
+        Box(modifier = modifier) {
+            BasicTextField(
+                value = fromText,
+                onValueChange = {
+                    numberOfCharacters = it.length
+                    if (numberOfCharacters <= maximumCharacters) {
+                        onTextChange.invoke(it)
+                    }
+                },
+                cursorBrush = SolidColor(MaterialTheme.colors.primary),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .onFocusChanged { isFocused = it.isFocused },
+                textStyle = TextStyle(
+                    color = MaterialTheme.colors.onSurface
+                )
             )
-        )
-        if (fromText.isEmpty() && !isFocused) {
+            if (fromText.isEmpty() && !isFocused) {
+                Text(
+                    text = stringResource(
+                        id = R.string.enter_a_text_to_translate
+                    ),
+                    color = LightBlue
+                )
+            }
+        }
+        Divider(Modifier.padding(vertical = 16.dp))
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp)
+        ) {
             Text(
-                text = stringResource(
-                    id = R.string.enter_a_text_to_translate
-                ),
-                color = LightBlue
+                text = "$numberOfCharacters/$maximumCharacters",
+                color = LightBlue,
+                fontSize = 12.sp
+            )
+            ProgressButton(
+                text = stringResource(id = R.string.translate),
+                isLoading = isTranslating,
+                onCLick = onTranslateClick
             )
         }
-        ProgressButton(
-            text = stringResource(id = R.string.translate),
-            isLoading = isTranslating,
-            onCLick = onTranslateClick,
-            modifier = Modifier.align(Alignment.BottomEnd)
-        )
     }
 }
